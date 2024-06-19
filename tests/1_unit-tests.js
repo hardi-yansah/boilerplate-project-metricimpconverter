@@ -7,7 +7,7 @@ let convertHandler = new ConvertHandler();
 suite('Unit Tests', function () {
 
     test('1 unit gal to l', function (done) {
-        assert.equal(convertHandler.convert(5, 'gal'), 18.9271);
+        assert.equal(convertHandler.convert(5, 'gal'), 18.92705);
         done();
     });
 
