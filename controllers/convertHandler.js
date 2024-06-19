@@ -1,9 +1,10 @@
+let inputRegex = /[^a-z]+|[a-z]+/gi;
 function ConvertHandler() {
 
   this.getNum = function (input) {
     // let result;
-    const numberRegex = /-?\d+(\.\d+)?/g;
-    const matches = input.match(numberRegex);
+    // const numberRegex = /-?\d+(\.\d+)?/g;
+    const matches = input.match(inputRegex);
     const number = matches ? Number(matches[0]) : NaN;
     // return result;
     return number;
@@ -11,8 +12,8 @@ function ConvertHandler() {
 
   this.getUnit = function (input) {
     // let result;
-    const unitRegex = /[a-zA-Z]+/g;
-    const matches = input.match(unitRegex);
+    // const unitRegex = /[a-zA-Z]+/g;
+    const matches = input.match(inputRegex);
     const unit = matches ? matches[0] : NaN;
     // return result;
     return unit;
@@ -52,22 +53,25 @@ function ConvertHandler() {
 
   this.convert = function (initNum, initUnit) {
     const galToL = 3.78541;
+    const lToGal = 1 / galToL;
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
     let result;
 
-    if (initUnit === 'gal') {
-      result = initNum * galToL;
-    } else if (initUnit === 'l') {
-      result = initNum / galToL;
-    } else if (initUnit === 'lbs') {
-      result = initNum * lbsToKg;
-    } else if (initUnit === 'kg') {
-      result = initNum / lbsToKg;
-    } else if (initUnit === 'mi') {
-      result = initNum * miToKm;
-    } else if (initUnit === 'km') {
-      result = initNum / miToKm;
+    if (initUnit === 'gal' || initUnit === 'GAL') {
+      result = (initNum * galToL).toFixed(5);
+    } else if (initUnit === 'l' || initUnit === 'L') {
+      result = (initNum * lToGal).toFixed(5);
+    } else if (initUnit === 'lbs' || initUnit === 'LBS') {
+      result = (initNum * lbsToKg).toFixed(5);
+    } else if (initUnit === 'kg' || initUnit === 'KG') {
+      result = (initNum / lbsToKg).toFixed(5);
+    } else if (initUnit === 'mi' || initUnit === 'MI') {
+      result = (initNum * miToKm).toFixed(5);
+    } else if (initUnit === 'km' || initUnit === 'KM') {
+      result = (initNum / miToKm).toFixed(5);
+    } else {
+      result = 'invalid unit';
     }
 
     return result;
