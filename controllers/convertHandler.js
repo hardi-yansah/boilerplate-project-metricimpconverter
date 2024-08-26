@@ -49,7 +49,7 @@ function ConvertHandler() {
     let result = numberStringSplitter(input)[0];
     let nums = checkDiv(result);
     if (!nums) {
-      return undefined;
+      return 'undefined';
     }
 
     let num1 = nums[0];
@@ -58,7 +58,7 @@ function ConvertHandler() {
     result = parseFloat(num1) / parseFloat(num2);
 
     if (isNaN(num1) || isNaN(num2)) {
-      return undefined;
+      return 'undefined';
     }
 
     return result;
@@ -89,7 +89,7 @@ function ConvertHandler() {
       case "kg":
         return "kg";
       default:
-        return undefined;
+        return 'undefined';
     }
   };
 
@@ -116,7 +116,7 @@ function ConvertHandler() {
       case "kg":
         return "lbs";
       default:
-        return undefined;
+        return 'undefined';
     }
   };
 
@@ -181,7 +181,7 @@ function ConvertHandler() {
         result = initNum / lbsToKg;
         break;
       default:
-        result = undefined;
+        result = 'undefined';
     }
     return parseFloat(result.toFixed(5));
   };
