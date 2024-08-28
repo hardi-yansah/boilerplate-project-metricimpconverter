@@ -30,10 +30,9 @@ suite('Functional Tests', function () {
                     .get('/api/convert')
                     .query({ input: '32g' })
                     .end(function (err, res) {
-                        assert.equal(res.body.returnNum, 'invalid number');
-                        assert.equal(res.body.returnUnit, 'invalid unit');
-                        done();
+                        assert.equal(res.body, 'invalid unit');
                     });
+                done();
             });
 
             test('Convert 3/7.2/4kg (invalid number)', function (done) {
@@ -41,10 +40,9 @@ suite('Functional Tests', function () {
                     .get('/api/convert')
                     .query({ input: '3/7.2/4kg' })
                     .end(function (err, res) {
-                        assert.equal(res.body.returnNum, 'invalid number');
-                        assert.equal(res.body.returnUnit, 'invalid unit');
-                        done();
+                        assert.equal(res.body, 'invalid number');
                     });
+                done();
             });
 
             test('Convert 3/7.2/4kilomegagram (invalid number and unit)', function (done) {
@@ -52,10 +50,9 @@ suite('Functional Tests', function () {
                     .get('/api/convert')
                     .query({ input: '3/7.2/4kilomegagram' })
                     .end(function (err, res) {
-                        assert.equal(res.body.returnNum, 'invalid number');
-                        assert.equal(res.body.returnUnit, 'invalid unit');
-                        done();
+                        assert.equal(res.body, 'invalid number and unit');
                     });
+                done();
             });
 
             test('Convert kg (no number)', function (done) {
@@ -65,9 +62,12 @@ suite('Functional Tests', function () {
                     .end(function (err, res) {
                         assert.equal(res.body.initNum, 1);
                         assert.equal(res.body.initUnit, 'kg');
-                        done();
                     });
+                done();
             });
+
         });
+
     });
+
 });
